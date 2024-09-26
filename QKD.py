@@ -1,14 +1,25 @@
 # H Gate
 
 from qiskit.quantum_info import Statevector
-from qiskit import QuantumCircuit
+from qiskit import QuantumRegister, ClassicalRegister, QuantumCircuit
 import numpy as np
 
-# Create a quantum circuit with 4 qubits
-qc = QuantumCircuit(4)
+circuit = QuantumCircuit(q,c)
+q = QuantumRegister(2,'q')
+c = ClassicalRegister(2,'c')
 
-# Apply a Hadamard gate to put the qubit into superposition
-qc.h(0)
+m = circuit.measure(q,c) # Qubits states are measured 
+print(m)
+# Get probabilities of measuring |0⟩ and |1⟩
+probs = np.abs(state.data)**2
+
+measurement = np.random.choice([0, 1], p=probs)
+print("Measured original state:", measurement)
+
+x = circuit.h(q[0]) # H gate applied to quibit 0 
+m = circuit.measure(q,c) # Qubits states are measured 
+print("Text:", m)
+print("Test", x)
 
 # Get the statevector of the qubit
 state = Statevector.from_instruction(qc)
@@ -16,17 +27,13 @@ state = Statevector.from_instruction(qc)
 # Print the statevector to see the amplitudes of |0⟩ and |1⟩
 print("Statevector:", state)
 
-# Get probabilities of measuring |0⟩ and |1⟩
-probs = np.abs(state.data)**2
 print("Probabilities:", probs)
 print("State data", state.data)
 
 # Simulate a measurement by randomly choosing |0⟩ or |1⟩ based on probabilities
 measurement = np.random.choice([0, 1], p=probs)
-print("Measured state:", measurement)
+print("Measured H state:", measurement)
 
-
-# CNOT Gate
 
 # CNOT Gate
 
@@ -74,17 +81,19 @@ from qiskit.quantum_info import Statevector
 from qiskit import QuantumRegister, ClassicalRegister, QuantumCircuit
 import numpy as np
 
-
+circuit = QuantumCircuit(q,c)
 q = QuantumRegister(2,'q')
 c = ClassicalRegister(2,'c')
 
 m = circuit.measure(q,c) # Qubits states are measured 
 print(m)
 
-circuit = QuantumCircuit(q,c)
+measurement = np.random.choice([0, 1], p=probs)
+print("Measured original state:", measurement)
+
 circuit.cx(q[0],q[1]) # CNOT applied to both qubits 
 m = circuit.measure(q,c) # Qubits states are measured 
-print(m)
+print("Text:", m)
 
 
 # Get the statevector of the qubit
@@ -100,4 +109,4 @@ print("State data", state.data)
 
 # Simulate a measurement by randomly choosing |0⟩ or |1⟩ based on probabilities
 measurement = np.random.choice([0, 1], p=probs)
-print("Measured state:", measurement)
+print("Measured CNOT state:", measurement)
