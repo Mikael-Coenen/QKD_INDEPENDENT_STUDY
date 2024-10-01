@@ -1,41 +1,58 @@
 # H Gate
 
+# from qiskit.quantum_info import Statevector
+# from qiskit import QuantumRegister, ClassicalRegister, QuantumCircuit
+# import numpy as np
+# q = QuantumRegister(2,'q')
+# c = ClassicalRegister(2,'c')
+# qc = QuantumCircuit(q,c)
+
+# # Get the statevector of the qubit
+# state = Statevector.from_instruction(qc)
+
+# m = qc.measure(q,c) # Qubits states are measured 
+# print(m)
+# # Get probabilities of measuring |0⟩ and |1⟩
+# probs = np.abs(state.data)**2
+
+# measurement = np.random.choice([0, 1], p=probs)
+# print("Measured original state:", measurement)
+
+# x = qc.h(q[0]) # H gate applied to quibit 0 
+# m = qc.measure(q,c) # Qubits states are measured 
+# print("Text:", m)
+# print("Test", x)
+
+# # Print the statevector to see the amplitudes of |0⟩ and |1⟩
+# print("Statevector:", state)
+
+# print("Probabilities:", probs)
+# print("State data", state.data)
+
+# # Simulate a measurement by randomly choosing |0⟩ or |1⟩ based on probabilities
+# measurement = np.random.choice([0, 1], p=probs)
+# print("Measured H state:", measurement)
+# ------------------------------------------------------------------------------
+from qiskit import QuantumCircuit
+from qiskit.circuit.library import HGate
 from qiskit.quantum_info import Statevector
-from qiskit import QuantumRegister, ClassicalRegister, QuantumCircuit
-import numpy as np
 
-circuit = QuantumCircuit(q,c)
-q = QuantumRegister(2,'q')
-c = ClassicalRegister(2,'c')
-
-m = circuit.measure(q,c) # Qubits states are measured 
-print(m)
-# Get probabilities of measuring |0⟩ and |1⟩
-probs = np.abs(state.data)**2
+qc = QuantumCircuit(1)
+hadamard_gate = HGate()
 
 measurement = np.random.choice([0, 1], p=probs)
 print("Measured original state:", measurement)
 
-x = circuit.h(q[0]) # H gate applied to quibit 0 
-m = circuit.measure(q,c) # Qubits states are measured 
-print("Text:", m)
-print("Test", x)
+qc.append(hadamard_gate, [0])
 
-# Get the statevector of the qubit
 state = Statevector.from_instruction(qc)
+probs = np.abs(state.data)**2
 
-# Print the statevector to see the amplitudes of |0⟩ and |1⟩
-print("Statevector:", state)
-
-print("Probabilities:", probs)
-print("State data", state.data)
-
-# Simulate a measurement by randomly choosing |0⟩ or |1⟩ based on probabilities
 measurement = np.random.choice([0, 1], p=probs)
-print("Measured H state:", measurement)
+print("H-gate state:", measurement)
+qc.draw('mpl')
 
-
-# CNOT Gate
+# X Gate
 
 # from qiskit.quantum_info import Statevector
 # from qiskit.circuit import QuantumRegister
@@ -74,39 +91,58 @@ print("Measured H state:", measurement)
 # print("Measured state:", measurement)
 
 
+# from qiskit.quantum_info import Statevector
+# from qiskit import QuantumRegister, ClassicalRegister, QuantumCircuit
+# import numpy as np
 
-# CNOT Gate
+# circuit = QuantumCircuit(q,c)
+# q = QuantumRegister(2,'q')
+# c = ClassicalRegister(2,'c')
 
+# m = circuit.measure(q,c) # Qubits states are measured 
+# print(m)
+
+# measurement = np.random.choice([0, 1], p=probs)
+# print("Measured original state:", measurement)
+
+# circuit.cx(q[0],q[1]) # CNOT applied to both qubits 
+# m = circuit.measure(q,c) # Qubits states are measured 
+# print("Text:", m)
+
+
+# # Get the statevector of the qubit
+# state = Statevector.from_instruction(qc)
+
+# # Print the statevector to see the amplitudes of |0⟩ and |1⟩
+# print("Statevector:", state)
+
+# # Get probabilities of measuring |0⟩ and |1⟩
+# probs = np.abs(state.data)**2
+# print("Probabilities:", probs)
+# print("State data", state.data)
+
+# # Simulate a measurement by randomly choosing |0⟩ or |1⟩ based on probabilities
+# measurement = np.random.choice([0, 1], p=probs)
+# print("Measured CNOT state:", measurement)
+
+
+from qiskit import QuantumCircuit
+from qiskit.circuit.library import XGate
 from qiskit.quantum_info import Statevector
-from qiskit import QuantumRegister, ClassicalRegister, QuantumCircuit
-import numpy as np
 
-circuit = QuantumCircuit(q,c)
-q = QuantumRegister(2,'q')
-c = ClassicalRegister(2,'c')
+qc = QuantumCircuit(1)
+pauli_x_gate = XGate()
 
-m = circuit.measure(q,c) # Qubits states are measured 
-print(m)
+state = Statevector.from_instruction(qc)
+probs = np.abs(state.data)**2
 
 measurement = np.random.choice([0, 1], p=probs)
 print("Measured original state:", measurement)
 
-circuit.cx(q[0],q[1]) # CNOT applied to both qubits 
-m = circuit.measure(q,c) # Qubits states are measured 
-print("Text:", m)
-
-
-# Get the statevector of the qubit
+qc.append(pauli_x_gate, [0])
 state = Statevector.from_instruction(qc)
-
-# Print the statevector to see the amplitudes of |0⟩ and |1⟩
-print("Statevector:", state)
-
-# Get probabilities of measuring |0⟩ and |1⟩
 probs = np.abs(state.data)**2
-print("Probabilities:", probs)
-print("State data", state.data)
 
-# Simulate a measurement by randomly choosing |0⟩ or |1⟩ based on probabilities
 measurement = np.random.choice([0, 1], p=probs)
-print("Measured CNOT state:", measurement)
+print("X-gate state:", measurement)
+qc.draw('mpl')
