@@ -11,22 +11,22 @@ qc = QuantumCircuit(1)
 # Create a Hadamard gate
 hadamard_gate = HGate()
 
-# Measure the initial state based on the calculated probabilities
-measurement = np.random.choice([0, 1], p=probs)
-print("Measured original state:", measurement)
-
-# Add tge hadamard gate to the quibit
-# If commented probs will be [0, 1] or [1, 0]
-# If uncommented probs will be [0.5, 0.5] which simulates superposition since it transforms 
-# the qubit’s state into an equal probability of being measured as |0⟩ or |1⟩.
-qc.append(hadamard_gate, [0])
-
 # Update the state after initialization by creating a Statevector from the current circuit
 state = Statevector.from_instruction(qc)
 
 # Calculate the probabilities of measuring |0⟩ or |1⟩ based on the current state
 probs = np.abs(state.data)**2
 print("Probabilities:", probs)
+
+# Measure the initial state based on the calculated probabilities
+measurement = np.random.choice([0, 1], p=probs)
+print("Measured original state:", measurement)
+
+# Add the hadamard gate to the quibit
+# If commented probs will be [0, 1] or [1, 0]
+# If uncommented probs will be [0.5, 0.5] which simulates superposition since it transforms 
+# the qubit’s state into an equal probability of being measured as |0⟩ or |1⟩.
+qc.append(hadamard_gate, [0])
 
 # Measure the initial state based on the calculated probabilities
 measurement = np.random.choice([0, 1], p=probs)
@@ -101,8 +101,23 @@ import numpy as np
 # Create a quantum circuit with 2 qubits
 qc = QuantumCircuit(2)
 
-# Control quibit
-#control_qubit = qc[0]
+# Update the state after initialization by creating a Statevector from the current circuit
+state = Statevector.from_instruction(qc)
 
-qc.cx(qc[0],qc[1]) # CNOT applied to both qubits 
-# m = circuit.measure(q,c) # Qubits states are measured 
+# Calculate the probabilities of measuring |0⟩ or |1⟩ based on the current state
+probs = np.abs(state.data)**2
+print("Probabilities:", probs)
+
+# Measure the initial state based on the calculated probabilities
+measurement = np.random.choice([0, 1], p=probs)
+print("Measured original state:", measurement)
+
+# Applying cx to control qubit 0 to target qubit 1
+qc.cx(0, 1)
+
+# Measure the initial state based on the calculated probabilities
+measurement = np.random.choice([0, 1], p=probs)
+print("CNOT-gate state:", measurement)
+
+# Draw and visualize the quantum circuit
+qc.draw('mpl')
