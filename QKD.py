@@ -94,30 +94,24 @@ qc.draw('mpl')
 # Controlled NOT Gate
 
 from qiskit import QuantumCircuit
-from qiskit.circuit.library import XGate
 from qiskit.quantum_info import Statevector
 import numpy as np
 
 # Create a quantum circuit with 2 qubits
 qc = QuantumCircuit(2)
 
-# Update the state after initialization by creating a Statevector from the current circuit
-state = Statevector.from_instruction(qc)
+# Apply a Hadamard gate to qubit 0 to create a superposition
+qc.h(0)
 
-# Calculate the probabilities of measuring |0⟩ or |1⟩ based on the current state
-probs = np.abs(state.data)**2
-print("Probabilities:", probs)
-
-# Measure the initial state based on the calculated probabilities
-measurement = np.random.choice([0, 1], p=probs)
-print("Measured original state:", measurement)
-
-# Applying cx to control qubit 0 to target qubit 1
+# Apply a CNOT gate with control qubit 0 and target qubit 1
 qc.cx(0, 1)
 
-# Measure the initial state based on the calculated probabilities
-measurement = np.random.choice([0, 1], p=probs)
-print("CNOT-gate state:", measurement)
+# Update the state after applying gates by creating a Statevector from the current circuit
+state = Statevector.from_instruction(qc)
+
+# Calculate the probabilities of measuring |00⟩ or |11⟩ based on the current state (entangled state)
+probs = np.abs(state.data)**2
+print("Probabilities:", probs)
 
 # Draw and visualize the quantum circuit
 qc.draw('mpl')
