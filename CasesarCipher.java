@@ -30,7 +30,7 @@ public class CasesarCipher {
     traverseString(message);
 
     assignValues(messageCharArray);
-    System.out.println(valueOfCharInMessage);
+    // System.out.println(valueOfCharInMessage);
 
     // Ask user how many times they want to shift each character in the message
     System.out.println(
@@ -53,18 +53,26 @@ public class CasesarCipher {
   }
 
   static void assignValues(ArrayList<Character> arrayList) {
-    for (int i = 0; i <= message.length(); i++)
-      for (char letterInAlphabet : alphabet) {
-        for (char letterInMessage : arrayList) {
-          if (letterInAlphabet == letterInMessage) {
-            // set value of letterInMessage to index of letterInAlphabet
-            int newValue = i;
-            valueOfCharInMessage.add(newValue);
-            System.out.println(valueOfCharInMessage);
-            continue;
-            // System.out.println(valueOfCharInMessage);
-          }
+    for (char letterInAlphabet : alphabet) {
+      for (char letterInMessage : arrayList) {
+        if (letterInAlphabet == letterInMessage) {
+          System.out.println(letterInMessage);
+          System.out.println(Arrays.toString(alphabet).indexOf(letterInMessage));
         }
       }
-  }
+    }
+
+  //   for (int i = 0; i <= message.length(); i++) {
+  //     for (char letterInAlphabet : alphabet) {
+  //       for (char letterInMessage : arrayList) {
+  //         if (letterInAlphabet == letterInMessage) {
+  //           int newValue = i;
+  //           valueOfCharInMessage.add(newValue);
+  //           System.out.println(valueOfCharInMessage);
+  //           continue;
+  //         }
+  //       }
+  //   }
+  // }
+}
 }
