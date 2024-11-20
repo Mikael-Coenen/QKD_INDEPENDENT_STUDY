@@ -6,6 +6,8 @@ public class CasesarCipher {
   static char[] alphabet = { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r',
       's', 't', 'u', 'v', 'w', 'x', 'y', 'z' };
 
+  //static ArrayList<String> alphabet = new ArrayList<String>();
+
   // Array of each character in an array
   static ArrayList<Character> messageCharArray = new ArrayList<Character>();
 
@@ -41,7 +43,6 @@ public class CasesarCipher {
     // assignValues(message);
 
     scan.close();
-
   }
 
   // Add each character in a message to an arraylist
@@ -51,28 +52,14 @@ public class CasesarCipher {
       messageCharArray.add(letter);
     }
   }
-
+  
   static void assignValues(ArrayList<Character> arrayList) {
     for (char letterInAlphabet : alphabet) {
       for (char letterInMessage : arrayList) {
         if (letterInAlphabet == letterInMessage) {
-          System.out.println(letterInMessage);
-          System.out.println(Arrays.toString(alphabet).indexOf(letterInMessage));
+          System.out.println("Letter: " + letterInMessage + ", Index: " + Arrays.toString(alphabet).indexOf(letterInMessage));
         }
       }
     }
-
-  //   for (int i = 0; i <= message.length(); i++) {
-  //     for (char letterInAlphabet : alphabet) {
-  //       for (char letterInMessage : arrayList) {
-  //         if (letterInAlphabet == letterInMessage) {
-  //           int newValue = i;
-  //           valueOfCharInMessage.add(newValue);
-  //           System.out.println(valueOfCharInMessage);
-  //           continue;
-  //         }
-  //       }
-  //   }
-  // }
-}
+  }
 }
