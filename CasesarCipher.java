@@ -5,8 +5,14 @@ import java.util.Scanner;
 public class CasesarCipher {
   static char[] alphabet = { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r',
       's', 't', 'u', 'v', 'w', 'x', 'y', 'z' };
+  // static String[] alpha = {
+  //       "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", 
+  //       "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", 
+  //       "u", "v", "w", "x", "y", "z"
+  //   };
+    
 
-  //static ArrayList<String> alphabet = new ArrayList<String>();
+  // static ArrayList<String> alphabet = new ArrayList<String>();
 
   // Array of each character in an array
   static ArrayList<Character> messageCharArray = new ArrayList<Character>();
@@ -32,7 +38,6 @@ public class CasesarCipher {
     traverseString(message);
 
     assignValues(messageCharArray);
-    // System.out.println(valueOfCharInMessage);
 
     // Ask user how many times they want to shift each character in the message
     System.out.println(
@@ -52,13 +57,13 @@ public class CasesarCipher {
       messageCharArray.add(letter);
     }
   }
-  
+
   static void assignValues(ArrayList<Character> arrayList) {
-    for (char letterInAlphabet : alphabet) {
-      for (char letterInMessage : arrayList) {
-        if (letterInAlphabet == letterInMessage) {
-          System.out.println("Letter: " + letterInMessage + ", Index: " + Arrays.toString(alphabet).indexOf(letterInMessage));
-        }
+    for (int i = 0; i <= alphabet.length; i++) {
+      char letterInAlphabet = alphabet[i];
+      char letterInMessage = arrayList.get(i);
+      if (letterInAlphabet == letterInMessage) {
+        System.out.println("Letter: " + letterInMessage + ", Index: " + Arrays.toString(alphabet).indexOf(letterInMessage));
       }
     }
   }
