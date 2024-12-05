@@ -37,13 +37,14 @@ public class CasesarCipher {
     // Traverse message
     traverseString(message);
 
-    assignValues(messageCharArray);
-
     // Ask user how many times they want to shift each character in the message
     System.out.println(
         "How many times do you want to shift the letters by (negative number for left, positive number for right):");
-    String shift = scan.nextLine();
+    Integer shift = scan.nextInt();
     System.out.println("The amount your shifting each letter by is: " + shift);
+
+    assignValues(messageCharArray, shift);
+    System.out.println(text);
 
     // assignValues(message);
 
@@ -58,12 +59,34 @@ public class CasesarCipher {
     }
   }
 
-  static void assignValues(ArrayList<Character> arrayList) {
-    for (int i = 0; i <= alphabet.length; i++) {
-      char letterInAlphabet = alphabet[i];
-      char letterInMessage = arrayList.get(i);
-      if (letterInAlphabet == letterInMessage) {
-        System.out.println("Letter: " + letterInMessage + ", Index: " + Arrays.toString(alphabet).indexOf(letterInMessage));
+  // static String text = "";
+  //   static void assignValues(ArrayList<Character> arrayList, Integer shifter) {
+  //     for (int i = 0; i < alphabet.length; i++) {
+  //       char letterInAlphabet = alphabet[i];
+  //       for (int j = 0; j < arrayList.size(); j++) {
+  //         char letterInMessage = arrayList.get(j);
+  //         if (letterInAlphabet == letterInMessage) {
+  //           text += alphabet[j + shifter];
+  //       }
+  //       else {
+  //         continue;
+  //       }
+  //     }
+  //   }
+  // }
+
+  static String text = "";
+    static void assignValues(ArrayList<Character> arrayList, Integer shifter) {
+      for (int j = 0; j < arrayList.size(); j++) {
+        char letterInMessage = arrayList.get(j);
+        for (int i = 0; i < alphabet.length; i++) {
+          char letterInAlphabet = alphabet[i];;
+          if (letterInAlphabet == letterInMessage) {
+            text += alphabet[j + shifter];
+        }
+        else {
+          continue;
+        }
       }
     }
   }
