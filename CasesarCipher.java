@@ -5,14 +5,6 @@ import java.util.Scanner;
 public class CasesarCipher {
   static char[] alphabet = { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r',
       's', 't', 'u', 'v', 'w', 'x', 'y', 'z' };
-  // static String[] alpha = {
-  //       "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", 
-  //       "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", 
-  //       "u", "v", "w", "x", "y", "z"
-  //   };
-    
-
-  // static ArrayList<String> alphabet = new ArrayList<String>();
 
   // Array of each character in an array
   static ArrayList<Character> messageCharArray = new ArrayList<Character>();
@@ -46,8 +38,6 @@ public class CasesarCipher {
     assignValues(messageCharArray, shift);
     System.out.println(text);
 
-    // assignValues(message);
-
     scan.close();
   }
 
@@ -59,33 +49,26 @@ public class CasesarCipher {
     }
   }
 
-  // static String text = "";
-  //   static void assignValues(ArrayList<Character> arrayList, Integer shifter) {
-  //     for (int i = 0; i < alphabet.length; i++) {
-  //       char letterInAlphabet = alphabet[i];
-  //       for (int j = 0; j < arrayList.size(); j++) {
-  //         char letterInMessage = arrayList.get(j);
-  //         if (letterInAlphabet == letterInMessage) {
-  //           text += alphabet[j + shifter];
-  //       }
-  //       else {
-  //         continue;
-  //       }
-  //     }
-  //   }
-  // }
-
   static String text = "";
     static void assignValues(ArrayList<Character> arrayList, Integer shifter) {
       for (int j = 0; j < arrayList.size(); j++) {
         char letterInMessage = arrayList.get(j);
         for (int i = 0; i < alphabet.length; i++) {
-          char letterInAlphabet = alphabet[i];;
+          char letterInAlphabet = alphabet[i];
           if (letterInAlphabet == letterInMessage) {
-            text += alphabet[j + shifter];
-        }
-        else {
-          continue;
+            // If the user asks for z loop them back to a
+            if (letterInAlphabet == 'z') {
+              text += alphabet[(26-(27-shifter))];
+              continue;
+            }
+            else if (letterInAlphabet == 'a' && shifter <= -1) {
+              text += alphabet[(26+shifter)];
+              continue;
+            }
+            else {
+              text += alphabet[i + shifter];
+              continue;
+            }
         }
       }
     }
