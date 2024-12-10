@@ -3,20 +3,21 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class CasesarCipher {
+  // Char array of the alphabet
   static char[] alphabet = { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r',
       's', 't', 'u', 'v', 'w', 'x', 'y', 'z' };
 
-  // Array of each character in an array
+  // Array of each character in their message as an array
   static ArrayList<Character> messageCharArray = new ArrayList<Character>();
 
-  // Array of each character in an arrayList
-  static ArrayList<Integer> valueOfCharInMessage = new ArrayList<Integer>();
-
+  // User message as string
   static String message;
 
   public static void main(String[] args) {
-    // Ask user for message
+    // Scan for user message
     Scanner scan = new Scanner(System.in);
+
+    // Ask user to enter message
     System.out.println("Enter in a message to be encrypted using the Casesar Cipher: ");
     message = scan.nextLine();
 
@@ -35,6 +36,7 @@ public class CasesarCipher {
     Integer shift = scan.nextInt();
     System.out.println("The amount your shifting each letter by is: " + shift);
 
+    // Call assignvalues on message char array and add the shift
     assignValues(messageCharArray, shift);
     System.out.println(text);
 
@@ -68,7 +70,7 @@ public class CasesarCipher {
             else {
               text += alphabet[i + shifter];
               continue;
-            }
+          }
         }
       }
     }
