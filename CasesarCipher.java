@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class CasesarCipher {
@@ -21,6 +20,16 @@ public class CasesarCipher {
     System.out.println("Enter in a message to be encrypted using the Casesar Cipher: ");
     message = scan.nextLine();
 
+    // Attempts on user-proofing if they input wrong type
+    //String.class.isInstance(message)
+    //System.out.println("Type " + message.getClass().getName());
+    // if (message.getClass().getName()) {
+    // }
+    // if (Integer.class.isInstance(message)) {
+    //   System.out.println("You must input letters for your message");
+    //   message = scan.nextLine();
+    // }
+  
     // Convert message to lower case
     message = message.toLowerCase();
 
@@ -40,6 +49,7 @@ public class CasesarCipher {
     assignValues(messageCharArray, shift);
     System.out.println(text);
 
+    // Close scanner
     scan.close();
   }
 
@@ -51,25 +61,31 @@ public class CasesarCipher {
     }
   }
 
+  // Create empty text that will have shifted letters
   static String text = "";
-    static void assignValues(ArrayList<Character> arrayList, Integer shifter) {
-      for (int j = 0; j < arrayList.size(); j++) {
-        char letterInMessage = arrayList.get(j);
-        for (int i = 0; i < alphabet.length; i++) {
-          char letterInAlphabet = alphabet[i];
-          if (letterInAlphabet == letterInMessage) {
-            // If the user asks for z loop them back to a
-            if (letterInAlphabet == 'z') {
-              text += alphabet[(26-(27-shifter))];
-              continue;
-            }
-            else if (letterInAlphabet == 'a' && shifter <= -1) {
-              text += alphabet[(26+shifter)];
-              continue;
-            }
-            else {
-              text += alphabet[i + shifter];
-              continue;
+
+  static void assignValues(ArrayList<Character> arrayList, Integer shifter) {
+    // Loop through the leters in a message
+    for (int j = 0; j < arrayList.size(); j++) {
+      char letterInMessage = arrayList.get(j);
+      // Loop through the leters in the alphabet
+      for (int i = 0; i < alphabet.length; i++) {
+        char letterInAlphabet = alphabet[i];
+        if (letterInAlphabet == letterInMessage) {
+          // If the user asks to go up from z, loop them back to a
+          if (letterInAlphabet == 'z') {
+            text += alphabet[(26 - (27 - shifter))];
+            continue;
+          }
+          // If the user asks to go down from a loop them back to z
+          else if (letterInAlphabet == 'a' && shifter <= -1) {
+            text += alphabet[(26 + shifter)];
+            continue;
+          }
+          // Add the shifted letter to their new message
+          else {
+            text += alphabet[i + shifter];
+            continue;
           }
         }
       }
