@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class CasesarCipher {
@@ -18,17 +19,41 @@ public class CasesarCipher {
 
     // Ask user to enter message
     System.out.println("Enter in a message to be encrypted using the Casesar Cipher: ");
+
     message = scan.nextLine();
 
-    // Attempts on user-proofing if they input wrong type
-    //String.class.isInstance(message)
-    //System.out.println("Type " + message.getClass().getName());
-    // if (message.getClass().getName()) {
+    // Clean message
+    message = message.toLowerCase().strip();
+    
+
+    // Trying to user-proof
+
+
+    // for (char letter : alphabet) {
+    //   for (int i = 0; i < message.length(); i++) {
+    //     if (letter != message.indexOf(i)) {
+    //       System.out.println("You must input only characters from the alphabet for your message.");
+    //       message = scan.nextLine();
+    //     }
+    //   }
     // }
-    // if (Integer.class.isInstance(message)) {
-    //   System.out.println("You must input letters for your message");
-    //   message = scan.nextLine();
+    // for (int i = 0; i < message.length(); i++) {
+    //   for (char letter : alphabet) {
+    //     if (letter != message.indexOf(i)) {
+    //       System.out.println("You must input only characters from the alphabet for your message.");
+    //       message = scan.nextLine();
+    //     }
+    //   }
     // }
+    for (int j = 0; j < message.length(); j++) {
+      char letterInMessage = (char) message.indexOf(j);
+      for (int i = 0; i < alphabet.length; i++) {
+        char letterInAlphabet = alphabet[i];
+        if (letterInAlphabet != letterInMessage) {
+          System.out.println("You must input only characters from the alphabet for your message.");
+          message = scan.nextLine();
+        }
+
   
     // Convert message to lower case
     message = message.toLowerCase();
@@ -51,6 +76,8 @@ public class CasesarCipher {
 
     // Close scanner
     scan.close();
+  }
+}
   }
 
   // Add each character in a message to an arraylist
