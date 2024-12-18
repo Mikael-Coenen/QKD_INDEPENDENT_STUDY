@@ -26,25 +26,15 @@ public class CasesarCipher {
     message = message.toLowerCase().strip();
     
 
-    // Trying to user-proof
-
-
-    // for (char letter : alphabet) {
-    //   for (int i = 0; i < message.length(); i++) {
-    //     if (letter != message.indexOf(i)) {
-    //       System.out.println("You must input only characters from the alphabet for your message.");
-    //       message = scan.nextLine();
-    //     }
-    //   }
-    // }
-    // for (int i = 0; i < message.length(); i++) {
-    //   for (char letter : alphabet) {
-    //     if (letter != message.indexOf(i)) {
-    //       System.out.println("You must input only characters from the alphabet for your message.");
-    //       message = scan.nextLine();
-    //     }
-    //   }
-    // }
+    // Trying to user-proof 
+    for (int i = 0; i < message.length(); i++) {
+      for (char letter : alphabet) {
+        if (letter != message.indexOf(i)) {
+          System.out.println("You must input only characters from the alphabet for your message.");
+          message = scan.nextLine();
+        }
+      }
+    }
     for (int j = 0; j < message.length(); j++) {
       char letterInMessage = (char) message.indexOf(j);
       for (int i = 0; i < alphabet.length; i++) {
